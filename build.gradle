@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+group = 'ec-cube3'
+version = '0.0.1-SNAPSHOT'
+
+description = """ec-cube3"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    testCompile 'com.codeborne:selenide:2.25'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile 'br.com.six2six:fixture-factory:3.1.0'
+    testCompile 'org.projectlombok:lombok:1.16.6'
+    testCompile 'org.apache.commons:commons-math:2.2'
+}
+
+tasks.withType(Test) {
+    // コマンドラインから渡したシステムプロパティをGradleにも渡す
+    systemProperties = System.getProperties()
+}
