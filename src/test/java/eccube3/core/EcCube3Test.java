@@ -1,8 +1,10 @@
 package eccube3.core;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import eccube3.constant.ConfigurationKey;
 import eccube3.util.EcCube3Configuration;
+import org.junit.After;
 import org.junit.BeforeClass;
 
 /**
@@ -12,8 +14,12 @@ public class EcCube3Test {
     protected static EcCube3Configuration ecCube3Configuration;
     @BeforeClass
     public static void setUpClass() {
-       ecCube3Configuration = EcCube3Configuration.getInstance();
-       Configuration.baseUrl = "http://" + ecCube3Configuration.get(ConfigurationKey.EC_CUBE3_ADDR);
+        ecCube3Configuration = EcCube3Configuration.getInstance();
+        Configuration.baseUrl = "http://" + ecCube3Configuration.get(ConfigurationKey.EC_CUBE3_ADDR);
+    }
 
+    @After
+    public void tearDown() {
+        WebDriverRunner.webdriverContainer.clearBrowserCache();
     }
 }
