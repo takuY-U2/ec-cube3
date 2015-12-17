@@ -20,7 +20,7 @@ public class Product {
 
     static {
          Fixture.of(Product.class).addTemplate("valid",  new Rule() { {
-             add("productName", regex("\\w{16}"));
+             add("productName", regex("\\w{32}"));
              add("productType", random(Integer.class, range(1, 2)));
              add("productDescriptionDetail", regex("\\w{32}"));
              add("productStock", random(Integer.class, range(1, 999)));
