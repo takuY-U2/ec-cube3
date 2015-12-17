@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import eccube3.data.Product;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 /**
  * Created by kenichiro_ota on 2015/12/16.
@@ -20,8 +21,10 @@ public class FrontPage {
         return $(".item_name");
     }
 
-    public void openDetail(Product product) {
+    public ProductDetailPage openProductDetail(Product product) {
         search(product);
         $(".item_name").click();
+
+        return page(ProductDetailPage.class);
     }
 }

@@ -7,6 +7,7 @@ import eccube3.pages.admin.AdminPage;
 import eccube3.pages.admin.LoginPage;
 import eccube3.pages.admin.ProductNewPage;
 import eccube3.pages.front.FrontPage;
+import eccube3.pages.front.ProductDetailPage;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,9 +38,10 @@ public class WhenIRegisterProductTest extends EcCube3Test {
 
     @Test
     public void ThenICanOpenDetailOfTheProduct() throws Exception {
+        // リンクをクリックすると、詳細ページに行ける
         FrontPage frontPage = open("/", FrontPage.class);
-        frontPage.openDetail(product);
+        ProductDetailPage productDetailPage = frontPage.openProductDetail(product);
 
-        Thread.sleep(3000);
+        productDetailPage.getItemName().shouldHave(text(product.getProductName()));
     }
 }
